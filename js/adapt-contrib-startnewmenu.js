@@ -3,10 +3,10 @@ define([
     'core/js/views/menuView'
 ], function(Adapt, MenuView) {
 
-    var BoxMenuView = MenuView.extend({
+    var StartNewMenuView = MenuView.extend({
 
         className: function() {
-            return MenuView.prototype.className.apply(this) + " boxmenu-menu";
+            return MenuView.prototype.className.apply(this) + " startnewmenu-menu";
         },
 
         attributes: function() {
@@ -21,7 +21,7 @@ define([
             this.model.getChildren().each(function(item) {
                 if (item.get('_isAvailable') && !item.get('_isHidden')) {
                     item.set('_nthChild', ++nthChild);
-                    this.$('.js-children').append(new BoxMenuItemView({model: item}).$el);
+                    this.$('.js-children').append(new StartNewMenuItemView({model: item}).$el);
                 }
 
                 if(item.get('_isHidden')) {
@@ -31,10 +31,10 @@ define([
         }
 
     }, {
-        template: 'boxmenu'
+        template: 'startnewmenu'
     });
 
-    var BoxMenuItemView = MenuView.extend({
+    var StartNewMenuItemView = MenuView.extend({
 
         events: {
             'click button' : 'onClickMenuItemButton'
@@ -83,12 +83,12 @@ define([
         }
 
     }, {
-        template: 'boxmenu-item'
+        template: 'startnewmenu-item'
     });
 
     Adapt.on('router:menu', function(model) {
 
-        $('#wrapper').append(new BoxMenuView({model: model}).$el);
+        $('#wrapper').append(new StartNewMenuView({model: model}).$el);
 
     });
 
